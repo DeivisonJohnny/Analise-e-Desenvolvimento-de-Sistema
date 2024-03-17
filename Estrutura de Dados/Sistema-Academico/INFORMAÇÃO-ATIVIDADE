@@ -1,0 +1,19 @@
+Dados dos alunos: 
+         matrícula de aluno
+        reposição de notas, 
+        alocação de presença/falta do aluno, entre outros.
+
+
+
+Passos: 
+
+        Passo 1: (vale até 0,5 ponto) UA2 a UA5:Escolher uma estrutura de dados e justificar porque ela é a mais adequada para a implementação do módulo escolhido;
+
+        Passo 2: (vale até 1,0 pontos) UA1 a UA5: Implementar a estrutura de dados escolhidas, ou seja, crie uma classe nova com os métodos de acordo com a estrutura escolhida. Pode ser em qualquer linguagem de programação;
+        
+        Passo 3: (vale até 0,5 pontos) UA2 a UA5: Utilizar a estrutura de dados implementada na solução do problema escolhido;
+
+
+
+
+        TENTAR ARMAZENAR DADOS PARA PINHA EM JSON ARQUIVO LOCAL

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="./public/js/main.js" defer></script>
+    
+    <!-- COLETAR DADOS API  -->
+    <script src="Api/restApi.js"></script>
+    
+    
+    
+    <!-- Fazer listagem dos dados coletados  -->
+    <script src="./model/ListagemAlunos.js"></script>
+    <script src="./controller/controllerActions.js"></script>
+    
+    <script src="./model/DirecionarDados.js" defer></script>
+    
+    <link rel="stylesheet" href="./public/css/menu.css">
+    <link rel="stylesheet" href="./public/css/main.css">
+    <script src="./public/js/menu.js" defer></script>
+
+    <title>Sistema Academico</title>
+</head>
+
+<body>
+    <header>
+        <div>
+
+            <p>Dev Johnny</p>
+            <ion-icon name="menu" id="btnMenu"></ion-icon>
+        </div>
+        <menu class="menuClose">
+            <ul>
+                <li>
+                    <button id="btnCriar"  onclick="openForm()">Criar novo cadastro</button>
+                </li>
+                <li>
+                    <a href="./views/frequencia.html">Frequencia de hoje</a>
+                </li>
+            </ul>
+        </menu>
+
+    </header>
+
+    <main>
+        <h1>Listagem dos alunos</h1>
+        <ul id="boxList">
+            <li class="lineAluno" id="headList" style="background-color: rgb(185, 218, 229);">
+                <p class="nMatricula">Matricula</p>
+                <p class="nome">Nome</p>
+                <p class="notas">Nota</p>
+                <p>Frequencia</p>
+                <p class="falta">Faltas</p>
+                <p class="mPresenca">Marcar presença</p>
+            </li>
+        </ul>
+        <div class="loadOpen">
+            <canvas class="circ-load"></canvas>
+        </div>
+    </main>
+
+    <div class="boxForm closeForm">
+        <form>
+            <ion-icon id="btnClose" name="close-outline"></ion-icon>
+            <h1>Adicione</h1>
+            <div>
+                
+                <label for="nome">Nome</label>
+                <input type="text" class="inputs" id="nome">
+            </div>
+            <div id="boxBtn">
+                <button class="btnSubmit">Adicionar Aluno</button>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- CONFIGURAÇÕES BTN MENU - HEADER  -->
+    <script src="../public/js/menu.js" defer></script>
+    <link rel="stylesheet" href="../public/css/menu.css">
+
+    <!-- COLETAR DADOS POR QUERY STRING  -->
+    <script src="../model/Frequencia.js" defer></script>
+    <script src="../model/GerenciarPresenca.js" defer></script>
+
+
+    <!-- LISTAGEM DA ORDEM  -->
+    <link rel="stylesheet" href="../public/css/listarOrdem.css">
+
+    <script src="../controller/controllerActions.js" defer></script>
+
+    <script src="../public/js/listaOrdem.js" defer></script>
+    
+    <title>Frequencia</title>
+</head>
+
+<body>
+    <header>
+        <div>
+
+            <p>Dev Johnny</p>
+            <ion-icon name="menu" id="btnMenu"></ion-icon>
+        </div>
+        <menu class="menuClose">
+            <ul>
+                <li>
+                    <a href="../index.html">Lista de alunos</a>
+                </li>
+            </ul>
+        </menu>
+
+    </header>
+    <main>
+        <button id="reloadList">
+            <ion-icon name="refresh-outline"></ion-icon>
+        </button>
+        <div id="box-list">
+            <div class="line">
+                <p >Ordem</p>
+                <p >Nome</p>
+                <p >Matricula</p>
+                <p >Editar</p>
+            </div>
+
+        </div>
+    </main>
+
+
+    <div class="boxForm closeForm">
+        <form>
+            <ion-icon id="btnClose" name="close-outline"></ion-icon>
+            <h1>Altere ou delete</h1>
+            <div>
+                
+                <label for="nome">Nome</label>
+                <input type="hidden" class="inputs" id="nome" value="Deivison">
+                <p class="pText">Deivison</p>
+            </div>
+            <div>
+
+                <label for="matricula">Matricula</label>
+                <input type="hidden" class="inputs" id="matricula" value="23">
+                <p class="pText">23</p>
+            </div>
+            <div>
+                <label for="ordem">Ordem</label>
+                <select id="ordem" class="inputs">
+                </select>
+            </div>
+            <div id="boxBtn">
+                <button id="btnDelete">Deletar</button>
+                <button id="btnUpdate">Alterar</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
