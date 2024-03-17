@@ -1,7 +1,7 @@
 # 1° Experiência de Aprendizagem: Sistema Acadêmico 
 
 ## Projeto visualmente
-<a href="./index.html" style="padding: 10px; font-size: 14px; color: white; background-color: #1f2780; border: 1px solid #008cff;"> Veja página</a>
+<a href="https://deivisonjohnny.github.io/Analise-e-Desenvolvimento-de-Sistema/Estrutura%20de%20Dados/Sistema-Academico/" style="padding: 10px; font-size: 14px; color: white; background-color: #1f2780; border: 1px solid #008cff;"> Veja página</a>
 
 ## Desafio 🧐
 
