@@ -6,6 +6,6 @@ Você verá as atividades (EAs) de Estrutura de dados criadas e respondidas 🙃
 
 1° EA - Sistema Acadêmico
 
-2° EA - A DEFINIR
+2° EA - Arvore-Binaria
 
 3° EA - A DEFINIR

@@ -134,7 +134,7 @@ class AVLTree:
         self.root = self.delete(self.root, value)
 
 
-# Exemplo de uso:
+
 
 avl_tree = AVLTree()
 avl_tree.insert_value(10)
