@@ -1,7 +1,40 @@
-import Produto
-# Modificando a lista de produtos para utilizar uma árvore binária de busca
+import time
+
+class Produto:
+    def __init__(self, nome, categoria, preco):
+        self.nome = nome
+        self.categoria = categoria
+        self.preco = preco
 
 
+
+lista_de_produtos = [
+    Produto("Smartphone", "Eletrônicos", 1500),
+    Produto("Tablet", "Eletrônicos", 800),
+    Produto("Notebook", "Eletrônicos", 2500),
+    Produto("Fone de Ouvido", "Acessórios", 100),
+    Produto("Mochila", "Acessórios", 150),
+    Produto("Mouse", "Acessórios", 50),
+    Produto("Livro", "Livros", 30),
+    Produto("Kindle", "Eletrônicos", 300),
+]
+
+
+def buscar_produtos_similares(listProdutos, produtos):
+    produtos_similares = []
+    for p in listProdutos:
+        if p.categoria == produtos.categoria and p.nome != produtos.nome:
+            produtos_similares.append(p)
+    return produtos_similares
+
+
+produto_exemplo = Produto('Smartphone', "Eletrônicos", 1500)
+
+produto_similares = buscar_produtos_similares(lista_de_produtos, produto_exemplo)
+
+for p in produto_similares:
+    print(f"Produto: {p.nome}, Categoria: {p.categoria}, Preço: R${p.preco}")
+    
 class No:
     def __init__(self, produto):
         self.produto = produto
@@ -30,7 +63,7 @@ class ArvoreBusca:
             else:
                 self._adicionar_produto_recursivamente(produto, no_atual.direita)
 
-    def buscar_produtos_similares(self, produto):
+    def search(self, produto):
         produtos_similares = []
         self._buscar_similares_recursivamente(produto, self.raiz, produtos_similares)
         return produtos_similares
@@ -46,12 +79,11 @@ class ArvoreBusca:
             self._buscar_similares_recursivamente(produto, no_atual.direita, produtos_similares)
 
 
-# Construção da árvore de busca
 arvore = ArvoreBusca()
 for produto in lista_de_produtos:
     arvore.adicionar_produto(produto)
 
-# Exemplo de uso da árvore de busca para encontrar produtos similares
-produtos_similares = arvore.buscar_produtos_similares(produto_exemplo)
+
+produtos_similares = arvore.search(produto_exemplo)
 for p in produtos_similares:
     print(f"Produto: {p.nome}, Categoria: {p.categoria}, Preço: R${p.preco}")
