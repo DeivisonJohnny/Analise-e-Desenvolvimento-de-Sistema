@@ -87,3 +87,4 @@ for produto in lista_de_produtos:
 produtos_similares = arvore.search(produto_exemplo)
 for p in produtos_similares:
     print(f"Produto: {p.nome}, Categoria: {p.categoria}, Preço: R${p.preco}")
+
