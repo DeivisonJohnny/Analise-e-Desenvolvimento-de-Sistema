@@ -22,11 +22,18 @@ class actionsController {
         $path = $_POST['path'];
 
         if(!empty($titulo) and !empty($url) and !empty($path)) {
-            $res = $this->model->insert($titulo, $url, $path);
+            $res = $this->model->insertScrap($titulo, $url, $path);
+
+            // if($res){
+            //     header('Location: ./?a=')
+            // }
 
             require_once('./views/formulario.php');
-            var_dump($res);
         }
+
+    }
+
+    function listAll(){
 
     }
 

@@ -1,17 +1,83 @@
-<?php 
-require_once('./configuration/connect.php');
+<?php
+require_once ('./configuration/connect.php');
 
-class Actions extends Connect{
+class Actions extends Connect
+{
 
-    function insert($titulo, $url, $path) {
-        return $this->getDados($url, $path);
+    function insertScrap($titulo, $url, $path){
+
+        if (empty($titulo) or empty($url) or empty($path)) {
+            header('Location: ./?error=empty');
+            die('Dados coletados estão vázios');
+        }
+
+        $sql = "INSERT INTO scrap_collection (titulo, url, path) VALUES (:titulo, :url, :path)";
+
+        try {
+
+            $query = $this->conn->prepare($sql);
+
+            $query->bindParam(':titulo', $titulo);
+            $query->bindParam(':url', $url);
+            $query->bindParam(':path', $path);
+
+            $result = $query->execute();
+
+            $idInsert = $this->conn->lastInsertId();
+
+            if (!$result) {
+                header('Location: ./?error=falidQuery');
+                die();
+            }
+            return $this->insertData($idInsert, $url, $path);
+
+        } catch (PDOException $error) {
+            echo $error;
+            header("Location: ./?error=inesperado&code=$error");
+        }
+
+        return false;
     }
 
-    function getDados( $url, $path) {
+    private function insertData($idInsert, $url, $path)
+    {
+        $data = $this->getDados($url, $path);
+        if (!$data) {
+            return false;
+        }
+
+        $sql = "INSERT INTO data_collection (id, data) VALUES (:id, :data)";
+
+        try {
+
+            $query = $this->conn->prepare($sql);
+    
+            $query->bindParam(':id', $idInsert);
+    
+            foreach ($data as $value) {
+                $query->bindParam(':data', $value);
+                $result = $query->execute();
+    
+                if (!$result) {
+                    return false;
+                }
+            }
+
+        } catch(PDOException $error) {
+            header('Location: ./?error=insertData');
+            die('Error de inserção dos dados, inesperado');
+        }
+
+        return true;
+
+    }
+
+    function getDados($url, $path)
+    {
 
         $html = file_get_contents($url);
 
-        if(!$html) {
+        if (!$html) {
             die('Falha na requisição');
         }
 
@@ -24,19 +90,17 @@ class Actions extends Connect{
 
         $elements = $xpath->query($path);
 
-        $listElements = array();
-        
-        if ($elements) {
-            foreach ($elements as $element) {
-                $item = $element->nodeValue;
-                $listElements[] = $item;
-            }
-            return $listElements;
+        if (empty($elements) or !isset($elements)) {
+            return false;
         }
-        
-        return false;
 
+        $listElements = array();
 
+        for ($i = 0; $i < $elements->count(); $i++) {
+            $listElements[] = $elements->item($i)->nodeValue;
+        }
+
+        return $listElements;
 
     }
 
