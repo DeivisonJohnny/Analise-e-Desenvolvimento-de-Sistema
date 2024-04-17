@@ -4,6 +4,8 @@ require_once ('./configuration/connect.php');
 class Actions extends Connect
 {
 
+
+    // Inserção da scrap 
     function insertScrap($titulo, $url, $path){
 
         if (empty($titulo) or empty($url) or empty($path)) {
@@ -34,6 +36,7 @@ class Actions extends Connect
         } catch (PDOException $error) {
             echo $error;
             header("Location: ./?error=inesperado&code=$error");
+            
         }
 
         return false;
@@ -103,6 +106,29 @@ class Actions extends Connect
         return $listElements;
 
     }
+
+
+    //Listagem das scrap
+
+
+    function listAll() {
+
+        $sql = "SELECT scrap_collection.titulo, scrap_collection.url, scrap_collection.path, GROUP_CONCAT(data_collection.data) AS data
+        FROM scrap_collection
+        LEFT JOIN data_collection ON data_collection.id = scrap_collection.id
+        GROUP BY scrap_collection.id";
+
+
+
+        $query = $this->conn->prepare($sql);
+        $query->execute();
+        $result = $query->fetchAll();
+
+        return $result;
+
+    }
+
+
 
 }
 

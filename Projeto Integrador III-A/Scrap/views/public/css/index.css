@@ -5,28 +5,18 @@
     font-family: monospace, sans-serif;
 }
 
-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 10px;
-    background-color: #0066ff;
-    color: white;
+body {
+    background-color: #e6efff;
 }
-
-header > h1 {
-    font-size: 24px;
-}
-
 
 main {
     display: flex;
     align-items: center;
     justify-content: center;
     
-    height: calc(100vh - 48px);
-    background-color: #e6efff;
+    height: 100%;
+    position: relative;
+    top: 100px;
 }
 
 main > form {

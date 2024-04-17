@@ -1,3 +1,5 @@
+
+    
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,9 +9,10 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <link rel="stylesheet" href="./public/css/listScrap.css">
+    <link rel="stylesheet" href="./views/public/css/listScrap.css">
+    <link rel="stylesheet" href="./views/public/css/menu.css">
 
-    <script src="./public/js/listScrap.js" defer></script>
+    <script src="./views/public/js/menu.js" defer></script>
 
     <title>listagem de scrap</title>
 </head>
@@ -24,10 +27,10 @@
     <menu class="menu">
         <ul>
             <li>
-                <a href="">Adicionar Scrap</a>
+                <a href="./">Adicionar Scrap</a>
             </li>
             <li>
-                <a href="">Lista de Scraps</a>
+                <a href="./?a=listAll">Lista de Scraps</a>
             </li>
         </ul>
     </menu>
@@ -38,32 +41,40 @@
         </span>
         <section>
             <ul>
+                <?php if(!empty($data)):?>
+
+                    <?php foreach($data as $value):?>
                 <li>
                     <div>
                         <span>
                             <h3>Titulo</h3>
-                            <p>Series</p>
+                            <p><?=$value['titulo']?></p>
                         </span>
 
                         <span>
                             <h3>URL</h3>
-                            <p>http://127.0.0.1:5500/Scrap/views/listScrap.html</p>
+                            <p><?=$value['url']?></p>
                         </span>
 
                         <span>
                             <h3>Path</h3>
-                            <p>//div/h2/strong</p>
+                            <p><?=$value['path']?></p>
                         </span>
                     </div>
 
                     <div>
-                        <textarea cols="30" rows="10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum, molestiae quidem? Quisquam nihil voluptates similique numquam earum vitae voluptatem voluptatum, alias delectus porro? Dignissimos, eveniet cupiditate. Autem, tenetur molestias. Sed.
-                        </textarea>
+                        <textarea cols="auto" rows="auto"><?=$value['data']?></textarea>
                     </div>
                 </li>
+                <?php endforeach?>
+
+                <?php else:?>
+                    <h1>Não fizeram nenhuma scrap até o momento</h1>
+                <?php endif?>
             </ul>
         </section>
     </main>
 </body>
 
 </html>
+

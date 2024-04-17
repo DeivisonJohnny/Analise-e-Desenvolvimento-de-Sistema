@@ -1,9 +1,9 @@
 <?php 
 
 define("HOST", 'localhost');
-define("USER", 'root');
-define("PASS", '');
-define("DBNAME", 'scrap_cesmac');
+define("USER", 'id22052717_johnny_cesmac');
+define("PASS", '93186145De@');
+define("DBNAME", 'id22052717_scrap_cesmac');
 
 class Connect {
 

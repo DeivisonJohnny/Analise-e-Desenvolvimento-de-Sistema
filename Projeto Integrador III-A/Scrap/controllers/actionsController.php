@@ -24,16 +24,16 @@ class actionsController {
         if(!empty($titulo) and !empty($url) and !empty($path)) {
             $res = $this->model->insertScrap($titulo, $url, $path);
 
-            // if($res){
-            //     header('Location: ./?a=')
-            // }
-
-            require_once('./views/formulario.php');
+            if($res){
+                echo "<script>window.location.href = './?a=listAll';</script>";
+            }
         }
 
     }
 
     function listAll(){
+        $data = $this->model->listAll();
+        require_once('./views/listScrap.php');
 
     }
 
