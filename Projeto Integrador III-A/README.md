@@ -2,7 +2,6 @@
 
 # 1° Experiência de Aprendizagem: Sistema Aluguel de Livros
 
-
 ## Objetivo 🧐
 
 Aplicar os conhecimentos aprendidos nas matérias de Modelagem de Banco de Dados e Estrutura de Dados em uma Scrap
@@ -12,8 +11,12 @@ Criar um site onde os usuarios pode coletar dados de outros site usando scrap, p
 
 ## Site em funcionamento
 
-https://projetoscrap.000webhostapp.com/
+https://projeto-scrap.000webhostapp.com/
 
 ## Principal arquivo do projeto
 
 Actions.php - Toda lógica obrigatória do projeto
+
+## Como usar o PATH? 
+
+Em caso de erro de requisição negada. Tente alterar o PATH para um formato mais curto, 'enxuto'.

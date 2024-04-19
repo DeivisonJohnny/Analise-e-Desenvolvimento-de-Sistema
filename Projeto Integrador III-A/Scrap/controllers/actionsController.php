@@ -26,6 +26,10 @@ class actionsController {
 
             if($res){
                 echo "<script>window.location.href = './?a=listAll';</script>";
+            } else {
+                echo "<script>alert('Falha na requisição -> URL negada')</script>";
+                die();
+
             }
         }
 

@@ -7,10 +7,16 @@ class Actions extends Connect
 
     // Inserção da scrap 
     function insertScrap($titulo, $url, $path){
-
+        
+        
         if (empty($titulo) or empty($url) or empty($path)) {
             header('Location: ./?error=empty');
             die('Dados coletados estão vázios');
+        }
+
+        $data = $this->getDados($url, $path);
+        if(empty($data)) {
+            return false;
         }
 
         $sql = "INSERT INTO scrap_collection (titulo, url, path) VALUES (:titulo, :url, :path)";
@@ -31,20 +37,19 @@ class Actions extends Connect
                 header('Location: ./?error=falidQuery');
                 die();
             }
-            return $this->insertData($idInsert, $url, $path);
+            return $this->insertData($idInsert, $data);
 
         } catch (PDOException $error) {
-            echo $error;
-            header("Location: ./?error=inesperado&code=$error");
+            $error = $error->getCode();
+            header("Location: ./?error=inesperado&code=$error->");
             
         }
 
         return false;
     }
 
-    private function insertData($idInsert, $url, $path)
+    private function insertData($idInsert,$data)
     {
-        $data = $this->getDados($url, $path);
         if (!$data) {
             return false;
         }
@@ -78,10 +83,10 @@ class Actions extends Connect
     function getDados($url, $path)
     {
 
-        $html = file_get_contents($url);
+        $html = @file_get_contents($url);
 
         if (!$html) {
-            die('Falha na requisição');
+            return false;
         }
 
         $dom = new DOMDocument();

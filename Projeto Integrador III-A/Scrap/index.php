@@ -6,3 +6,4 @@ $controller = new actionsController();
 
 
 $controller->{$action}();
+
