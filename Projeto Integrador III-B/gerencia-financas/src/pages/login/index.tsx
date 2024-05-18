@@ -1,15 +1,40 @@
-// import { LinearGradient } from 'expo-linear-gradient'
 import { LinearGradient } from 'expo-linear-gradient';
-import * as React from 'react';
-import { Text, View, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import { Text, View, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity, } from 'react-native';
+import * as Animatable from 'react-native-animatable'
 
-interface LoginProps { }
 
-const Login = (props: LoginProps) => {
+
+const Login = () => {
+
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [senhaError, setSenhaError] = useState('');
+
+    const validateEmail = (text) => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(text)) {
+            setEmailError('Por favor, insira um email válido.');
+        } else {
+            setEmailError('');
+        }
+        setEmail(text);
+    };
+
+    const validateSenha = (text) => {
+        if (text.length < 8) {
+            setSenhaError('A senha deve ter pelo menos 8 caracteres.');
+        } else {
+            setSenhaError('');
+        }
+        setSenha(text);
+    };
+
     return (
         <View style={styles.body}>
 
-            {/* Header Login */}
+            {/*BOX Header Login */}
             <ImageBackground
                 source={require('../../assets/img/background-login3.jpg')}
                 style={styles.header}
@@ -19,35 +44,33 @@ const Login = (props: LoginProps) => {
                 <LinearGradient
                     colors={['#00000069', '#151F30']}
                     style={styles.bgGradient}>
-
                     <Text style={{ fontSize: 25, color: 'white', fontWeight: 'bold', position: 'relative', bottom: 100 }}>Acessar suas finanças</Text>
-
                 </LinearGradient>
-
             </ImageBackground>
 
             {/* Main  */}
             <View style={styles.main}>
-
                 <View style={styles.boxInputs}>
                     <View style={styles.boxLabel}>
-
                         <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 15, textAlign: 'center' }}>*</Text>
                         <Text style={styles.label}>Email</Text>
                     </View>
 
-
                     <TextInput
                         placeholder='devprogrammer@code.com'
                         style={styles.inputs}
-                        placeholderTextColor={'gray'} />
-                    <Text style={styles.requiredText}>O campo deve ser preenchido</Text>
-
+                        placeholderTextColor={'gray'}
+                        onChangeText={validateEmail}
+                    />
+                    {emailError ? (
+                        <Animatable.Text animation="fadeInLeft" duration={700} style={styles.errorText}>
+                            {emailError}
+                        </Animatable.Text>
+                    ) : null}
                 </View>
 
                 <View style={styles.boxInputs}>
                     <View style={styles.boxLabel}>
-
                         <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 15, textAlign: 'center' }}>*</Text>
                         <Text style={styles.label}>Senha</Text>
                     </View>
@@ -56,29 +79,26 @@ const Login = (props: LoginProps) => {
                         style={styles.inputs}
                         placeholderTextColor={'gray'}
                         secureTextEntry
+                        onChangeText={validateSenha}
                     />
-                    <Text style={styles.requiredText}>O campo deve ser preenchido</Text>
+                    {senhaError ? (
+                        <Animatable.Text animation="fadeInLeft" duration={700} style={styles.errorText}>
+                            {senhaError}
+                        </Animatable.Text>
+                    ) : null}
                 </View>
-
 
                 <View style={styles.boxInputs}>
-                    <TouchableOpacity style={styles.btnAcessar} onPress={TesteBtn} >
-                        <Text style={{fontSize: 15, fontWeight: 'bold', color: 'white'}}>Acessar</Text>
+                    <TouchableOpacity style={styles.btnAcessar}>
+                        <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }}>Acessar</Text>
                     </TouchableOpacity>
-
                 </View>
-
             </View>
-
         </View>
     );
 };
 
-function TesteBtn() {
 
-}
-
-export default Login;
 
 const styles = StyleSheet.create({
     body: {
@@ -117,8 +137,10 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingVertical: 20,
         paddingHorizontal: 20,
-        gap: 5
+        gap: 5,
+        overflow: 'hidden'
     },
+
     boxLabel: {
         alignItems: 'center',
         flexDirection: 'row',
@@ -157,8 +179,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5
-    }
+    },
 
-
+    errorText: {
+        color: 'red',
+        fontSize: 11,
+        fontWeight: 'bold',
+        paddingLeft: 5
+    },
 
 });
+
+export default Login;
