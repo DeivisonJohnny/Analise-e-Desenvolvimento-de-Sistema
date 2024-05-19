@@ -5,6 +5,7 @@ import * as Animatable from 'react-native-animatable'
 
 
 
+
 const Login = () => {
 
     const [email, setEmail] = useState('');
@@ -50,6 +51,7 @@ const Login = () => {
 
             {/* Main  */}
             <View style={styles.main}>
+                
                 <View style={styles.boxInputs}>
                     <View style={styles.boxLabel}>
                         <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 15, textAlign: 'center' }}>*</Text>

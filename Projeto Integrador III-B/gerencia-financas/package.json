@@ -12,15 +12,18 @@
     "@expo/metro-runtime": "^3.2.1",
     "@rneui/base": "^4.0.0-rc.8",
     "@rneui/themed": "^4.0.0-rc.8",
+    "@types/yup": "^0.32.0",
     "expo": "~51.0.6",
     "expo-linear-gradient": "~13.0.2",
     "expo-status-bar": "~1.12.1",
+    "formik": "^2.4.6",
     "react": "18.2.0",
     "react-dom": "^18.3.1",
     "react-native": "0.74.1",
     "react-native-animatable": "^1.4.0",
     "react-native-linear-gradient": "^2.8.3",
-    "react-native-web": "^0.19.11"
+    "react-native-web": "^0.19.11",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
