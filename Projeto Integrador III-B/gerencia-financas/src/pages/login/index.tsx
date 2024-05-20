@@ -1,36 +1,22 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import { Formik } from 'formik';
 import { useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity, } from 'react-native';
 import * as Animatable from 'react-native-animatable'
 
+import * as Yup from 'yup'
 
 
 
 const Login = () => {
 
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [senhaError, setSenhaError] = useState('');
+    const handleLogin = ({ email, senha }: any) => {
 
-    const validateEmail = (text) => {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(text)) {
-            setEmailError('Por favor, insira um email válido.');
-        } else {
-            setEmailError('');
-        }
-        setEmail(text);
-    };
+        console.log(email)
+        console.log(senha)
 
-    const validateSenha = (text) => {
-        if (text.length < 8) {
-            setSenhaError('A senha deve ter pelo menos 8 caracteres.');
-        } else {
-            setSenhaError('');
-        }
-        setSenha(text);
-    };
+    }
+
 
     return (
         <View style={styles.body}>
@@ -51,50 +37,65 @@ const Login = () => {
 
             {/* Main  */}
             <View style={styles.main}>
-                
-                <View style={styles.boxInputs}>
-                    <View style={styles.boxLabel}>
-                        <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 15, textAlign: 'center' }}>*</Text>
-                        <Text style={styles.label}>Email</Text>
-                    </View>
 
-                    <TextInput
-                        placeholder='devprogrammer@code.com'
-                        style={styles.inputs}
-                        placeholderTextColor={'gray'}
-                        onChangeText={validateEmail}
-                    />
-                    {emailError ? (
-                        <Animatable.Text animation="fadeInLeft" duration={700} style={styles.errorText}>
-                            {emailError}
-                        </Animatable.Text>
-                    ) : null}
-                </View>
+                <Formik
+                    initialValues={{ email: '', senha: '' }}
+                    onSubmit={handleLogin}
+                    validationSchema={Yup.object({
+                        email: Yup.string().email('Digite um email válido').required('o campo deve ser preenchido'),
+                        senha: Yup.string().min(8, 'O este campo deve ter ao menos 8 caracteres').required('O campo deve ter preenchido')
+                    })}
+                >
+                    {({ errors, handleChange, handleSubmit }) => (
 
-                <View style={styles.boxInputs}>
-                    <View style={styles.boxLabel}>
-                        <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 15, textAlign: 'center' }}>*</Text>
-                        <Text style={styles.label}>Senha</Text>
-                    </View>
-                    <TextInput
-                        placeholder='********'
-                        style={styles.inputs}
-                        placeholderTextColor={'gray'}
-                        secureTextEntry
-                        onChangeText={validateSenha}
-                    />
-                    {senhaError ? (
-                        <Animatable.Text animation="fadeInLeft" duration={700} style={styles.errorText}>
-                            {senhaError}
-                        </Animatable.Text>
-                    ) : null}
-                </View>
+                        <>
+                            <View style={styles.boxInputs}>
+                                <View style={styles.boxLabel}>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 15, textAlign: 'center' }}>*</Text>
+                                    <Text style={styles.label}>Email</Text>
+                                </View>
 
-                <View style={styles.boxInputs}>
-                    <TouchableOpacity style={styles.btnAcessar}>
-                        <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }}>Acessar</Text>
-                    </TouchableOpacity>
-                </View>
+                                <TextInput
+                                    placeholder='devprogrammer@code.com'
+                                    style={styles.inputs}
+                                    placeholderTextColor={'gray'}
+                                    onChangeText={handleChange('email')}
+
+                                />
+
+
+                                {errors.email && <Animatable.Text animation="fadeInLeft" duration={700} style={styles.errorText}>{errors.email}</Animatable.Text>}
+                                
+                            </View>
+
+                            <View style={styles.boxInputs}>
+                                <View style={styles.boxLabel}>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 15, textAlign: 'center' }}>*</Text>
+                                    <Text style={styles.label}>Senha</Text>
+                                </View>
+                                <TextInput
+                                    placeholder='********'
+                                    style={styles.inputs}
+                                    placeholderTextColor={'gray'}
+                                    secureTextEntry
+                                    onChangeText={handleChange('senha')}
+                                />
+                                {errors.senha && <Animatable.Text animation="fadeInLeft" duration={650} style={styles.errorText} >{errors.senha}</Animatable.Text>}
+                            </View>
+
+                            <View style={styles.boxInputs}>
+                                <TouchableOpacity style={styles.btnAcessar} onPress={()=> handleSubmit()}>
+                                    <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }}>Acessar</Text>
+                                </TouchableOpacity>
+                            </View>
+
+
+                        </>
+                    )}
+
+                </Formik>
+
+
             </View>
         </View>
     );
