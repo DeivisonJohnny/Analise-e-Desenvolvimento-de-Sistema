@@ -31,7 +31,7 @@ const Login2 = () => {
 
 
             <ImageBackground
-                source={require('../../assets/img/background-login3.jpg')}
+                source={require('../../assets/img/bgLogin.jpg')}
                 style={styles.header}
                 imageStyle={{ width: '100%', height: '100%' }}>
 

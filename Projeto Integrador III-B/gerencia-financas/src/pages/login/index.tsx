@@ -1,7 +1,10 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { Text, View, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity, } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity, ScrollView } from 'react-native';
+import { Ionicons } from 'react-native-vector-icons';
+
+
 import * as Animatable from 'react-native-animatable'
 
 import * as Yup from 'yup'
@@ -36,7 +39,7 @@ const Login = () => {
             </ImageBackground>
 
             {/* Main  */}
-            <View style={styles.main}>
+            <ScrollView style={styles.main}>
 
                 <Formik
                     initialValues={{ email: '', senha: '' }}
@@ -65,7 +68,7 @@ const Login = () => {
 
 
                                 {errors.email && <Animatable.Text animation="fadeInLeft" duration={700} style={styles.errorText}>{errors.email}</Animatable.Text>}
-                                
+
                             </View>
 
                             <View style={styles.boxInputs}>
@@ -84,7 +87,7 @@ const Login = () => {
                             </View>
 
                             <View style={styles.boxInputs}>
-                                <TouchableOpacity style={styles.btnAcessar} onPress={()=> handleSubmit()}>
+                                <TouchableOpacity style={styles.btnAcessar} onPress={() => handleSubmit()}>
                                     <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }}>Acessar</Text>
                                 </TouchableOpacity>
                             </View>
@@ -96,7 +99,19 @@ const Login = () => {
                 </Formik>
 
 
-            </View>
+            </ScrollView>
+            {/* <View style={styles.footer}>
+                <View style={styles.boxIcons}>
+                    <Ionicons name="logo-linkedin" size={24} color="black" />
+                    <Ionicons name="logo-instagram" size={24} color="black" />
+                    <Ionicons name="logo-github" size={24} color="black" />
+                    <Ionicons name="logo-whatsapp" size={24} color="black" />
+                </View>
+
+                <View>
+                    <Text>Dev Johnny</Text>
+                </View>
+            </View> */}
         </View>
     );
 };
@@ -109,14 +124,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'column',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        backgroundColor: '#151F30',
     },
 
     header: {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        height: '45%',
+        height: '40%',
         width: '100%',
     },
 
@@ -130,9 +146,8 @@ const styles = StyleSheet.create({
 
     main: {
         width: '100%',
-        height: '65%',
+        
         backgroundColor: '#151F30',
-        alignItems: 'center',
         flexDirection: 'column'
     },
 
@@ -184,6 +199,7 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
 
+
     errorText: {
         color: 'red',
         fontSize: 11,
@@ -191,6 +207,20 @@ const styles = StyleSheet.create({
         paddingLeft: 5
     },
 
+    footer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        // height: '5%',
+        paddingVertical: 10,
+        width: '100%',
+        backgroundColor: 'red'
+    },
+
+    boxIcons: {
+      flexDirection: 'row',
+      gap: 10
+    },
 });
 
 export default Login;
