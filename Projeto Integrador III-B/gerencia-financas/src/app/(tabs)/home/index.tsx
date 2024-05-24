@@ -1,6 +1,7 @@
-import { color } from '@rneui/base';
+import { Button, color } from '@rneui/base';
 import * as React from 'react';
-import { Text, View, StyleSheet, ImageBackground, } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, } from 'react-native';
+import Gasto from '../components/gasto';
 
 
 
@@ -30,8 +31,19 @@ const Home = () => {
             <Text>Insuficiente</Text>
           </View>
         </View>
+        
 
       </View>
+
+      <ScrollView>
+
+      <Text>Seus gastos</Text>
+
+      <View>
+      <Gasto/>
+      </View>
+
+      </ScrollView>
 
     </ImageBackground>
 
