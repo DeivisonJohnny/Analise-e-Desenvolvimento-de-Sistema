@@ -1,12 +1,37 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-interface GastoProps {}
+interface GastoProps { }
 
 let listGasto = [
     {
         nome: 'Compras',
         valor: 556.5,
+        categoria: 'casa'
+    },
+    {
+        nome: 'Agua',
+        valor: 60.0,
+        categoria: 'casa'
+    },
+    {
+        nome: 'Agua',
+        valor: 60.0,
+        categoria: 'casa'
+    },
+    {
+        nome: 'Agua',
+        valor: 60.0,
+        categoria: 'casa'
+    },
+    {
+        nome: 'Agua',
+        valor: 60.0,
+        categoria: 'casa'
+    },
+    {
+        nome: 'Agua',
+        valor: 60.0,
         categoria: 'casa'
     },
     {
@@ -37,40 +62,149 @@ let listGasto = [
 ]
 
 const Gasto = (props: GastoProps) => {
+
+
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Gastos</Text>
-            {listGasto.map((item, index) => (
-                <View key={index} style={styles.item}>
-                    <Text>Nome: {item.nome}</Text>
-                    <Text>Valor: {item.valor}</Text>
-                    <Text>Categoria: {item.categoria}</Text>
-                </View>
-            ))}
+        <View style={styles.bodyGasto}>
+
+            <View style={styles.headerList}>
+                <Text style={styles.titleHeadeList}>Nome</Text>
+                <Text style={styles.titleHeadeList}>Valor</Text>
+                <Text style={styles.titleHeadeList}>Categoria</Text>
+            </View>
+
+                
+            <ScrollView style={styles.bodyList} >
+                {listGasto.map((item, index) => (
+                    <TouchableOpacity style={styles.itemGasto} key={index.toString()}>
+                        <Text style={[styles.textItem, {color: 'white', letterSpacing: 1}]}>{item.nome}</Text>
+                        <Text style={[styles.textItem, {color: 'red', fontWeight: 'normal', textShadowColor: 'red', textShadowRadius: 1}]}>R$ {item.valor}</Text>
+                        <Text style={[styles.textItem, {color: '#d9e900a6',}]}>{item.categoria}</Text>
+                    </TouchableOpacity>
+                ))}
+            </ScrollView>
+
+
         </View>
-    );
+    )
+
+    // return (
+    //     <View style={styles.container}>
+    //         <Text style={styles.title}>Gastos</Text>
+    //         {listGasto.map((item, index) => (
+    //             <View key={index} style={styles.item}>
+    //                 <Text>Nome: {item.nome}</Text>
+    //                 <Text>Valor: {item.valor}</Text>
+    //                 <Text>Categoria: {item.categoria}</Text>
+    //             </View>
+    //         ))}
+    //     </View>
+    // );
 };
 
 export default Gasto;
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 20,
-        backgroundColor: '#f0f0f0'
+    bodyGasto: {
+        backgroundColor: '#ffffff0c',
+        borderWidth: 1,
+        borderColor: '#ffffff28',
+        width: '100%',
+        alignItems: 'center',
+        paddingVertical: 15,
+        borderRadius: 5
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20
+
+    headerList: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        borderBottomWidth: 1,
+        borderColor: '#ffffff28',
+        paddingBottom: 15
     },
-    item: {
+
+    bodyList: {
+        width: '100%',
+        height: 200,
+        overflow: 'scroll',
+        // flex: 1
+    },
+
+    itemGasto: {
+        // backgroundColor: 'red',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'row',
         padding: 10,
-        backgroundColor: '#fff',
-        marginBottom: 10,
-        borderRadius: 5,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5
+        width: '100%'
+    },
+
+    titleHeadeList: {
+        width: '30%',
+        textAlign: 'center',
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: 'white',
+        letterSpacing: 1
+    },
+
+    textItem: {
+        textAlign: 'center',
+        width: '30%',
+        fontWeight: 'bold'
     }
 });
+
+
+// import React from 'react';
+// import {
+//   StyleSheet,
+//   Text,
+//   SafeAreaView,
+//   ScrollView,
+//   StatusBar,
+// } from 'react-native';
+
+// const Gasto = () => {
+//   return (
+//       <ScrollView style={styles.scrollView}>
+//         <Text style={styles.text}>
+//           Lorem ipsum dolor sit amet, consectetu
+//         </Text>
+//         <Text style={styles.text}>
+//           Lorem ipsum dolor sit amet, consectetu
+//         </Text>
+//         <Text style={styles.text}>
+//           Lorem ipsum dolor sit amet, consectetu
+//         </Text>
+
+//         <Text style={styles.text}>
+//           Lorem ipsum dolor sit amet, consectetu
+//         </Text>
+//         <Text style={styles.text}>
+//           Lorem ipsum dolor sit amet, consectetu
+//         </Text>
+//         <Text style={styles.text}>
+//           Lorem ipsum dolor sit amet, consectetu
+//         </Text>
+//       </ScrollView>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop: StatusBar.currentHeight,
+//   },
+//   scrollView: {
+//     backgroundColor: 'pink',
+//     marginHorizontal: 20,
+//   },
+//   text: {
+//     fontSize: 42,
+//   },
+// });
+
+// export default Gasto;

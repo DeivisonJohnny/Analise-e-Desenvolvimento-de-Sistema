@@ -1,7 +1,8 @@
 import { Button, color } from '@rneui/base';
 import * as React from 'react';
-import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, StatusBar, SafeAreaView } from 'react-native';
 import Gasto from '../components/gasto';
+// import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -9,43 +10,43 @@ import Gasto from '../components/gasto';
 const Home = () => {
   return (
 
-    <ImageBackground source={require('../../assets/img/bg-home.png')} style={styles.body} imageStyle={{ width: '100%', height: '100%' }}>
+    //     
+    <SafeAreaView style={styles.body} >
+      <ImageBackground source={require('../../assets/img/bg-home.png')} height={100} imageStyle={{ width: '100%', height: '100%' }} style={{width:'100%', height: '100%'}}>
 
-      <View style={styles.containerSaldos}>
 
 
-        <View style={styles.boxSaldos}>
-          <Text style={[styles.titleSaldo, {color: 'red'}]}>Dispesas</Text>
-          <Text style={{ fontSize: 25, color: 'white', fontWeight: 'bold' }}>R$ 2.300,00</Text>
-          <View style={{ flexDirection: 'row', gap: 5 }}>
-            <Text>Status: </Text>
-            <Text>Insuficiente</Text>
+
+        <View style={styles.containerSaldos}>
+
+
+          <View style={styles.boxSaldos}>
+            <Text style={[styles.titleSaldo, { color: 'red' }]}>Dispesas</Text>
+            <Text style={{ fontSize: 25, color: 'white', fontWeight: 'bold' }}>R$ 2.300,00</Text>
+            <View style={{ flexDirection: 'row', gap: 5 }}>
+              <Text style={styles.titleStatus}>Status: </Text>
+              <Text style={styles.status}>Insuficiente</Text>
+            </View>
           </View>
+
+          <View style={styles.boxSaldos} >
+            <Text style={styles.titleSaldo}>Renda</Text>
+            <Text style={{ fontSize: 25, color: 'white', fontWeight: 'bold' }}>R$ 1.757,32</Text>
+            <View style={{ flexDirection: 'row', gap: 5 }}>
+              <Text style={styles.titleStatus}>Status: </Text>
+              <Text style={styles.status}>Insuficiente</Text>
+            </View>
+          </View>
+
+
         </View>
 
-        <View style={styles.boxSaldos} >
-          <Text style={styles.titleSaldo}>Renda</Text>
-          <Text style={{ fontSize: 25, color: 'white', fontWeight: 'bold' }}>R$ 1.757,32</Text>
-          <View style={{ flexDirection: 'row', gap: 5 }}>
-            <Text>Status: </Text>
-            <Text>Insuficiente</Text>
-          </View>
+        <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
+          <Gasto />
         </View>
-        
 
-      </View>
-
-      <ScrollView>
-
-      <Text>Seus gastos</Text>
-
-      <View>
-      <Gasto/>
-      </View>
-
-      </ScrollView>
-
-    </ImageBackground>
+      </ImageBackground>
+    </SafeAreaView>
 
   );
 };
@@ -56,6 +57,8 @@ const styles = StyleSheet.create({
   body: {
     width: '100%',
     height: '100%',
+    // paddingTop: StatusBar.currentHeight,
+
   },
 
   containerSaldos: {
@@ -72,24 +75,31 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ffffff28',
     justifyContent: 'space-around',
+    gap: 10,
     width: '48%',
-    height: 100,
+    // height: 100,
     backgroundColor: '#ffffff0c',
-    padding: 10,
+    padding: 15,
     borderRadius: 5
   },
 
   titleSaldo: {
-    color: '#00cf6885',
+    color: '#00cf68f3',
     fontWeight: 'bold',
     fontSize: 12,
     letterSpacing: 1.2
   },
 
 
-  textStatus: {
+  titleStatus: {
     color: 'gray',
     fontSize: 12,
+  },
+
+  status: {
+    color: 'lightblue', 
+    fontWeight: 'bold',
+    fontSize: 13
   }
 
 });
