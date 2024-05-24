@@ -111,6 +111,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ffffff28',
         width: '100%',
+        maxHeight: '76%',
+        minHeight: '50%',
         alignItems: 'center',
         paddingVertical: 15,
         borderRadius: 5
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
 
     bodyList: {
         width: '100%',
-        height: 200,
+        height: '100%',
         overflow: 'scroll',
         // flex: 1
     },
