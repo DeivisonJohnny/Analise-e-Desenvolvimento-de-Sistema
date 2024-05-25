@@ -1,8 +1,10 @@
 import { Button, color } from '@rneui/base';
 import * as React from 'react';
 import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, StatusBar, SafeAreaView } from 'react-native';
-import Gasto from '../../components/gasto';
-import HeaderPerfil from '../../components/headerPerfil';
+import Gasto from '../../../components/gasto';
+import HeaderPerfil from '../../../components/headerPerfil';
+// import Gasto from '../../components/gasto';
+// import HeaderPerfil from '../../components/headerPerfil';
 
 
 const Home = () => {
@@ -10,7 +12,7 @@ const Home = () => {
 
     //     
     <SafeAreaView style={styles.body} >
-      <ImageBackground source={require('../../assets/img/bg-home.png')} height={100} imageStyle={{ width: '100%', height: '100%' }} style={{width:'100%', height: '100%'}}>
+      <ImageBackground source={require('../../../assets/img/bg-home.png')} height={100} imageStyle={{ width: '100%', height: '100%' }} style={{width:'100%', height: '100%'}}>
 
         <HeaderPerfil/>
 
