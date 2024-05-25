@@ -1,11 +1,8 @@
 import { Button, color } from '@rneui/base';
 import * as React from 'react';
 import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, StatusBar, SafeAreaView } from 'react-native';
-import Gasto from '../components/gasto';
-import HeaderPerfil from '../components/headerPerfil';
-// import { SafeAreaView } from 'react-native-safe-area-context';
-
-
+import Gasto from '../../components/gasto';
+import HeaderPerfil from '../../components/headerPerfil';
 
 
 const Home = () => {
@@ -17,31 +14,26 @@ const Home = () => {
 
         <HeaderPerfil/>
 
-    
-
-
-
-
         <View style={styles.containerSaldos}>
 
 
-          <View style={styles.boxSaldos}>
+          <TouchableOpacity style={styles.boxSaldos}>
             <Text style={[styles.titleSaldo, { color: 'red' }]}>Dispesas</Text>
             <Text style={{ fontSize: 25, color: 'white', fontWeight: 'bold' }}>R$ 2.300,00</Text>
             <View style={{ flexDirection: 'row', gap: 5 }}>
               <Text style={styles.titleStatus}>Status: </Text>
               <Text style={styles.status}>Insuficiente</Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.boxSaldos} >
+          <TouchableOpacity style={styles.boxSaldos} >
             <Text style={styles.titleSaldo}>Renda</Text>
             <Text style={{ fontSize: 25, color: 'white', fontWeight: 'bold' }}>R$ 1.757,32</Text>
             <View style={{ flexDirection: 'row', gap: 5 }}>
               <Text style={styles.titleStatus}>Status: </Text>
               <Text style={styles.status}>Insuficiente</Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
 
         </View>

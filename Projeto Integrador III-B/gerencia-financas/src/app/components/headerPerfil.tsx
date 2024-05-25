@@ -9,7 +9,7 @@ const HeaderPerfil = (props: HeaderPerfilProps) => {
         <View style={styles.header}>
             <TouchableOpacity style={styles.boxNameUser}>
                 <Image
-                    source={require('../../assets/img/foto-perfil.jpg')}
+                    source={require('../assets/img/foto-perfil.jpg')}
                     style={styles.fotoPerfil}
                 />
                 <Text style={styles.nameUser}>Deivison Johnny</Text>
