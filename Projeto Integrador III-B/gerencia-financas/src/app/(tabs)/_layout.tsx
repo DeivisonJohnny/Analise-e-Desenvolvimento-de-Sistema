@@ -1,13 +1,17 @@
-
+import { StyleSheet } from 'react-native';
 import { Tabs } from 'expo-router';
 
 export default function Layout() {
   return (
-    <Tabs>
+<Tabs screenOptions={{
+  headerShown: false,
+  tabBarStyle: {display: 'none'}
+}}>
       <Tabs.Screen
-        name="login/index"
+        name="index"
         options={{
           title: 'login',
+         
         }}
       />
       <Tabs.Screen
@@ -19,3 +23,10 @@ export default function Layout() {
     </Tabs>
   );
 }
+
+
+const styles = StyleSheet.create({
+  bottomMenu: {
+    backgroundColor: 'gray'
+  }
+});
