@@ -7,15 +7,17 @@ export default function Layout() {
   return (
     <Tabs screenOptions={{
       headerShown: false,
-      tabBarStyle: styles.bottomMenu
+      tabBarStyle: styles.bottomMenu,
+      
+      
     }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'login',
           tabBarIconStyle: styles.iconTab,
-          tabBarIcon: () => <Icon name='log-in' type='ionicon' color={'white'} size={22}></Icon>
-
+          tabBarIcon: () => <Icon name='log-in' type='ionicon' color={'white'} size={22}></Icon>,
+          
 
         }}
       />
