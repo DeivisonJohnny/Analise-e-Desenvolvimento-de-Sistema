@@ -1,18 +1,21 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import FormComponents from '../../../components/formInsert/formComponents';
 
-interface addRendaProps {}
+interface AddRendaProps {}
 
-const addRenda = (props: addRendaProps) => {
+const AddRenda = (props: AddRendaProps) => {
   return (
     <View style={styles.container}>
-      <Text>addRenda</Text>
+      <FormComponents label={['primeiro', 'segundo']}></FormComponents>
     </View>
   );
 };
 
-export default addRenda;
+export default AddRenda;
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    height: '100%',
+  }
 });

@@ -228,13 +228,14 @@
 
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import Dispesas from './dispesas';
+import Dispesas from './dispesas/addDispesas';
+import AddRenda from './renda/index';
 
 interface homeProps {}
 
 const home = (props: homeProps) => {
   return (
-    <Dispesas/>
+    <AddRenda/>
   );
 };
 
