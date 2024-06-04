@@ -1,25 +1,45 @@
 import { StatusBar, StyleSheet } from 'react-native';
 import { Tabs } from 'expo-router';
 import { Icon, Tab } from 'react-native-elements';
+import { useState } from 'react';
+import { Route } from 'expo-router/build/Route';
 
 
 export default function Layout() {
+
+  const [key, setKey] = useState('')
+
+
   return (
-    <Tabs screenOptions={{
+    <Tabs screenOptions={({ route }) => ({
+
       headerShown: false,
-      tabBarStyle: styles.bottomMenu,
+      tabBarStyle: route.key === 'renda/index' ? { display: 'none', } : styles.bottomMenu,
+      // tabBarStyle: {display: 'none'}
+
+      // Adiciona console.log para depuração
+      // console.log('Current route key:', route.key == 'login');
+      // console.log('Current route name:', route.name);
+      // console.log('Current route name:', route.name === 'renda/index');
       
-      
-    }}>
+      // return {
+      //   headerShown: false,
+      //   tabBarStyle: route.name == 'renda/index' ? { display: 'none' } : styles.bottomMenu,
+      // };
+
+    })}>
+
       <Tabs.Screen
         name="index"
+        key='login'
         options={{
           title: 'login',
           tabBarIconStyle: styles.iconTab,
           tabBarIcon: () => <Icon name='log-in' type='ionicon' color={'white'} size={22}></Icon>,
-          
+
 
         }}
+
       />
       <Tabs.Screen
         name="home/index"
@@ -41,7 +61,7 @@ export default function Layout() {
       />
 
       <Tabs.Screen
-        name='dispesas/index'
+        name='dispesas/addDispesas'
         options={{
           title: 'Dispesas',
           tabBarIconStyle: styles.iconTab,
