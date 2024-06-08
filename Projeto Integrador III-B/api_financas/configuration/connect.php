@@ -1,4 +1,8 @@
 <?php 
+
+namespace Configuration;
+use PDO;
+use PDOException;
 // require_once('.env');
 
 // define("HOST", $_ENV['DB_HOST']);
@@ -24,10 +28,7 @@ class Connection  {
     function connect() {
 
         try{
-            
             $this->conn = new PDO("mysql:host=".HOST.";dbname=".DB_NAME, USER, PASS );
-
-
         } catch(PDOException $e) {
             echo $e->getMessage();
             echo "Erro de conexão";
@@ -39,4 +40,3 @@ class Connection  {
 
 new Connection();
 
-// O('mysql:host=localhost;dbname=<SOMEDB>', '<USERNAME>', 'PASSWORD')

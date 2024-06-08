@@ -1,28 +1,35 @@
 <?php 
 
-require_once('../configuration/connect.php');
+namespace Models;
+
+use Configuration\Connection;
+use PDO;
+require_once('./configuration/connect.php');
 
 class User extends Connection {
+
+    private $table;
 
     function __construct()
     {
         parent::__construct();
-        $this->listDispesas();
+        // $this->getData();
+    }
+    public function setTable($table) {
+        $this->table = $table;
     }
 
-    function listDispesas() {
+    function getData() {
 
-        $sql = "SELECT * FROM dispesas";
-
+        $sql = "SELECT * FROM $this->table";
         $query = $this->conn->prepare($sql);
-
-        $result = $query->execute();
-
-        var_dump($query->fetch(PDO::FETCH_ASSOC));
-
-
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
+
+
+
 
 }
 

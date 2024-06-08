@@ -1,13 +1,8 @@
 <?php
-include_once('./configuration/connect.php');
 
-class Teste extends Connection{
-    function __construct()
-    {
-        parent::__construct();
-    }
-}
+use Controller\userController;
 
+header("Access-Control-Allow-Origin: *");
 
 $rotas = [
     '/' => "notRoute",
@@ -44,20 +39,57 @@ function notRoute($request) {
 }
 
 function listDispesas($request) {
-    echo "Função de listar DISPESAS";
+    require_once('./controller/userController.php');
+    $userController = new userController();
+
+    $result = $userController->listData('dispesas');
+
+    
+    $dataJson = array();
+
+    foreach($result as $values) {
+        array_push($dataJson, [
+            "id" => $values['id'],
+            "titulo" => $values['titulo'],
+            "valor" => $values['valor'],
+            "categoria" => $values['categoria']
+        ]);
+    }
+
+    $dataJson = json_encode($dataJson);
+
+    die($dataJson);
+
+}
+function listRendas(){
+    require_once('./controller/userController.php');
+    $userController = new userController();
+
+    $result = $userController->listData('renda');
+
+    $dataJson = array();
+
+    foreach($result as $values) {
+        array_push($dataJson, [
+            "id" => $values['id'],
+            "titulo" => $values['titulo'],
+            "valor" => $values['valor'],
+        ]);
+    }
+
+    $dataJson = json_encode($dataJson);
+
+    die($dataJson);
 }
 
 function insertDispesas() {
     echo "Função de inserir DISPESAS";
 }
 
-function listRendas(){
-    echo "Função de listar RENDA";
-}
 
 function insertRendas(){
     echo "Função de inserir RENDA";
 }
 
 
-controllerRotas($_SERVER);
+controllerRotas($_SERVER['REQUEST_URI']);
