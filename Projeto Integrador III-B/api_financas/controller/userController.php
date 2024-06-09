@@ -34,4 +34,5 @@ class userController extends User {
         return $result;
 
     }
+
 }

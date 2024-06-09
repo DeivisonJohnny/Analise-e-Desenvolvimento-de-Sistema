@@ -12,6 +12,7 @@ $rotas = [
     '/postDispesas' => "insertDispesas",
     '/getRenda' => "listRendas",
     '/postRenda' => "insertRendas",
+    '/auth' => "login"
 ];
 
 
@@ -144,6 +145,35 @@ function insertRendas()
 
 
     die(json_encode(array("response_code" => $code_response)));
+}
+
+function login() {
+    
+    require_once('./controller/loginController.php');
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(404);
+        die(json_encode(
+            array(
+                "message" => "Metodo incorreto, utilize POST",
+                "response_code" => http_response_code(405),
+            )
+        ));
+    } 
+
+    $bodyRequest = file_get_contents('php://input');
+
+    $dataJson = json_decode($bodyRequest, true);
+
+
+    $email = $dataJson['email'];
+    $senha = $dataJson['senha'];
+
+    $loginController = new loginController();
+    $result = $loginController->authUser($email, $senha);
+
+    die(json_encode($result));
+    
 }
 
 controllerRotas($_SERVER['REQUEST_URI']);

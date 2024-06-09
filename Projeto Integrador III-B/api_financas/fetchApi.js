@@ -13,13 +13,11 @@ const dispesas = {
     valor: 134.4,
 }
 
-const uri = 'http://localhost:5201/postDispesas'
+const uri = 'http://localhost:5201/auth'
 
 const renda = {
-    titulo: "Passeio",
-    valor: 300,
-    categoria: "lazer",
-    idUser: 18
+    email: 'deivison@gmail.com',
+    senha: 'minhaSenhaApi'
 };
 
 fetch(uri, {
