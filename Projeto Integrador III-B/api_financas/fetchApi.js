@@ -16,8 +16,8 @@ const dispesas = {
 const uri = 'http://localhost:5201/auth'
 
 const renda = {
-    email: 'deivison@gmail.com',
-    senha: 'minhaSenhaApi'
+    email: 'kleria@gmail.com',
+    senha: '12345678'
 };
 
 fetch(uri, {

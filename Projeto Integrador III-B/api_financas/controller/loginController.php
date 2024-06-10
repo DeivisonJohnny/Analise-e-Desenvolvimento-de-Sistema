@@ -1,13 +1,16 @@
 <?php 
-require_once('../models/Login.php');
+require_once('./models/Login.php');
 
 
-class LoginController {
+class LoginController extends Login{
+
+    function __construct()
+    {
+        parent::__construct();
+    }
     
     function authUser($email, $senha) {
-
-
-        return array($email, $senha);
+        return $this->validAuth($email, $senha);
 
     }
 }
