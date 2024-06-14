@@ -26,7 +26,7 @@ class userController extends User {
         return $result;
 
     }
-    function postDispesa($titulo, $valor, $categoria, $idUser){
+    function postDespesa($titulo, $valor, $categoria, $idUser){
         $this->setTable('dispesas');
 
         $result = $this->insertDispesa($titulo, $valor, $categoria, $idUser);
