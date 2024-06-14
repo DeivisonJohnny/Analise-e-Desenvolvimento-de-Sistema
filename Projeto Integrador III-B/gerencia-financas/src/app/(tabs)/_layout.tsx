@@ -29,18 +29,9 @@ export default function Layout() {
 
     })}>
 
-      <Tabs.Screen
-        name="index"
-        key='login'
-        options={{
-          title: 'login',
-          tabBarIconStyle: styles.iconTab,
-          tabBarIcon: () => <Icon name='log-in' type='ionicon' color={'white'} size={22}></Icon>,
 
 
-        }}
-
-      />
+      
       <Tabs.Screen
         name="home/index"
         options={{

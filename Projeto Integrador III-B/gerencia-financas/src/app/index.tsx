@@ -26,7 +26,7 @@ const Login = () => {
 
             {/*BOX Header Login */}
             <ImageBackground
-                source={require('../../assets/img/bg-loginURI.webp')}
+                source={require('../assets/img/bg-loginURI.webp')}
                 style={styles.header}
                 imageStyle={{ width: '100%', height: '100%' }}>
 
