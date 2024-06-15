@@ -1,11 +1,83 @@
 import { Button, color } from '@rneui/base';
 import * as React from 'react';
 import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, StatusBar, SafeAreaView } from 'react-native';
-import Gasto from '../../../components/gasto';
+import Gasto from '../../../components/listarDados';
 import HeaderPerfil from '../../../components/headerPerfil';
 // import Gasto from '../../components/gasto';
 // import HeaderPerfil from '../../components/headerPerfil';
 
+const listlistElement = [
+  {
+      titulo: 'Compras',
+      valor: 556.5,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Agua',
+      valor: 60.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Gasolina',
+      valor: 230.0,
+      categoria: 'Transporte'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+  {
+      titulo: 'Energia',
+      valor: 220.0,
+      categoria: 'casa'
+  },
+];
 
 const Home = () => {
   return (
@@ -40,8 +112,8 @@ const Home = () => {
 
         </View>
 
-        <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
-          <Gasto />
+        <View style={{ paddingHorizontal: 20, paddingVertical: 20, overflow:'hidden'}}>
+          <Gasto list={listlistElement} categoria={true}/>
         </View>
 
       </ImageBackground>

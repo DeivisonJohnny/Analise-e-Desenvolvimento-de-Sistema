@@ -87,7 +87,7 @@ const Login = () => {
                             </View>
 
                             <View style={styles.boxInputs}>
-                                <TouchableOpacity style={styles.btnAcessar} onPress={() => handleSubmit()} onPressIn={()=> {router.push('./home/')}}>
+                                <TouchableOpacity style={styles.btnAcessar} onPress={() => handleSubmit()} onPressIn={()=> {router.push('./resumo/')}}>
                                     <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }}>Acessar</Text>
                                 </TouchableOpacity>
                             </View>

@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
@@ -21,6 +22,7 @@ const HeaderPerfil = (props: HeaderPerfilProps) => {
                     name='log-out-outline'
                     type='ionicon'
                     color='white'
+                    onPress={()=> router.replace('/')}
                 />
             </TouchableOpacity>
 
