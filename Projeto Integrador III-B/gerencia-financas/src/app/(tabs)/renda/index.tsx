@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import HeaderPerfil from '../../../components/headerPerfil';
 import ListElement from '../../../components/listarDados';
+import { getData } from '../../../backend/User';
 
 interface listRendaProps { }
 const listlistElement = [
@@ -77,23 +78,36 @@ const listlistElement = [
     },
 ];
 
-const listRenda = (props: listRendaProps) => {
+const ListRenda: React.FC<listRendaProps> = (props) => {
+    const [data, setData] = React.useState<any[]>([]); // inicializa com um array vazio de qualquer tipo
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await getData('renda');
+                setData(result); 
+                console.log(result)
+            } catch (error) {
+                console.error('Erro ao obter dados:', error);
+                // tratar erros aqui, se necessário
+            }
+        };
+
+        fetchData();
+    }, []); // executa somente uma vez no carregamento inicial (com [])
+
     return (
         <View style={styles.body}>
-            <HeaderPerfil/>
-
-
+            <HeaderPerfil />
             <View style={styles.main}>
-            <Text style={styles.title}>
-                Lista de Renda
-            </Text>
-                <ListElement list={listlistElement} categoria={false}></ListElement>
+                <Text style={styles.title}>Lista de Renda</Text>
+                <ListElement list={data} categoria={false} /> {/* passa os dados obtidos para o componente ListElement */}
             </View>
         </View>
     );
 };
 
-export default listRenda;
+export default ListRenda;
 
 const styles = StyleSheet.create({
     body: {
@@ -101,22 +115,19 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-
     main: {
         flexDirection: 'column',
-        // alignItems: ';',
         justifyContent: 'space-around',
         width: '100%',
         paddingTop: 15,
         paddingHorizontal: 15,
         borderTopWidth: 1,
-        borderColor: '#ffffff28'
+        borderColor: '#ffffff28',
     },
-
     title: {
         fontWeight: 'bold',
         fontSize: 24,
         marginLeft: 20,
-        color: 'white'
-    }
+        color: 'white',
+    },
 });

@@ -17,24 +17,15 @@ const Login = () => {
 
     const handleLogin = async ({ email, senha }: any) => {
         try {
+                router.replace('./home/')
             // const retornoAcesso = await Acessar(email, senha);
-
-            alert('Request feita')
-
-            // console.log(retornoAcesso)
-
-            router.replace('./home/')
-
             // if (retornoAcesso.result === true) {
-            //     router.replace('./home/')
             // } else {
             //     alert('Acesso negado')
             // }
 
-
         } catch (error) {
             console.error('Erro durante o login:', error);
-            // Aqui você pode tratar erros específicos ou mostrar uma mensagem ao usuário
         }
     }
 

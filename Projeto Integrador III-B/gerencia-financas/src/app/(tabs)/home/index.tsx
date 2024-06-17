@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, StatusBar, SafeAreaView } from 'react-native';
 import Gasto from '../../../components/listarDados';
 import HeaderPerfil from '../../../components/headerPerfil';
+import { getData } from '../../../backend/User';
 // import Gasto from '../../components/gasto';
 // import HeaderPerfil from '../../components/headerPerfil';
 
@@ -80,6 +81,22 @@ const listlistElement = [
 ];
 
 const Home = () => {
+  const [despesas, setDespesas] = React.useState<any[]>([]); // estado para armazenar os dados das despesas
+
+  React.useEffect(() => {
+      const fetchDespesas = async () => {
+          try {
+              const data = await getData('despesas'); // busca os dados da API
+              setDespesas(data); // atualiza o estado com os dados obtidos
+              console.log(despesas)
+          } catch (error) {
+              console.error('Erro ao obter despesas:', error);
+              // Trate o erro aqui, se necessário
+          }
+      };
+
+      fetchDespesas();
+  }, []); // executa somente uma vez no carregamento inicial (com [])
   return (
 
     //     
@@ -113,7 +130,7 @@ const Home = () => {
         </View>
 
         <View style={{ paddingHorizontal: 20, paddingVertical: 20, overflow:'hidden'}}>
-          <Gasto list={listlistElement} categoria={true}/>
+          <Gasto list={despesas} categoria={true}/>
         </View>
 
       </ImageBackground>

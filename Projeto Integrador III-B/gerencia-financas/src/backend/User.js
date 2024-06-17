@@ -63,3 +63,36 @@ export async function insertDespesas(titulo, valor, categoria) {
 
     return result
 }
+
+export async function getData(table) {
+    const url = `http://localhost/${table}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; 
+    }
+}
+
+
+export async function getQtdData(table) {
+    const url = `http://localhost/${table}/qtd`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; 
+    }
+}
