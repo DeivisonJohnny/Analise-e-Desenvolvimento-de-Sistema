@@ -1,10 +1,9 @@
-import { Button, color } from '@rneui/base';
 import * as React from 'react';
-import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, StatusBar, SafeAreaView } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import Gasto from '../../../components/listarDados';
 import HeaderPerfil from '../../../components/headerPerfil';
-// import Gasto from '../../components/gasto';
-// import HeaderPerfil from '../../components/headerPerfil';
+import { getData } from '../../../backend/User';
+
 
 const listlistElement = [
   {
@@ -80,6 +79,22 @@ const listlistElement = [
 ];
 
 const Home = () => {
+  const [despesas, setDespesas] = React.useState<any[]>([]); 
+
+  React.useEffect(() => {
+      const fetchDespesas = async () => {
+          try {
+              const data = await getData('despesas'); 
+              setDespesas(data);
+              console.log(despesas)
+          } catch (error) {
+              console.error('Erro ao obter despesas:', error);
+              
+          }
+      };
+
+      fetchDespesas();
+  }, []); 
   return (
 
     //     
@@ -113,7 +128,7 @@ const Home = () => {
         </View>
 
         <View style={{ paddingHorizontal: 20, paddingVertical: 20, overflow:'hidden'}}>
-          <Gasto list={listlistElement} categoria={true}/>
+          <Gasto list={despesas} categoria={true}/>
         </View>
 
       </ImageBackground>
@@ -128,7 +143,7 @@ const styles = StyleSheet.create({
   body: {
     width: '100%',
     height: '100%',
-    // paddingTop: StatusBar.currentHeight,
+
 
   },
 
@@ -148,7 +163,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     gap: 10,
     width: '48%',
-    // height: 100,
     backgroundColor: '#ffffff0c',
     padding: 15,
     borderRadius: 5
