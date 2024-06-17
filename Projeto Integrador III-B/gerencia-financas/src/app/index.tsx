@@ -2,7 +2,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Formik } from 'formik';
 import { Text, View, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity, ScrollView } from 'react-native';
 import { router } from 'expo-router'
-// import { Ionicons } from 'react-native-vector-icons';
+
+import { Acessar } from '../backend/Login'
+
 
 
 import * as Animatable from 'react-native-animatable'
@@ -13,11 +15,27 @@ import * as Yup from 'yup'
 
 const Login = () => {
 
-    const handleLogin = ({ email, senha }: any) => {
+    const handleLogin = async ({ email, senha }: any) => {
+        try {
+            const retornoAcesso = await Acessar(email, senha);
 
-        console.log(email)
-        console.log(senha)
+            alert('Request feita')
 
+            console.log(retornoAcesso)
+
+
+
+            if (retornoAcesso.result === true) {
+                router.replace('./home/')
+            } else {
+                alert('Acesso negado')
+            }
+
+
+        } catch (error) {
+            console.error('Erro durante o login:', error);
+            // Aqui você pode tratar erros específicos ou mostrar uma mensagem ao usuário
+        }
     }
 
 
@@ -87,7 +105,7 @@ const Login = () => {
                             </View>
 
                             <View style={styles.boxInputs}>
-                                <TouchableOpacity style={styles.btnAcessar} onPress={() => handleSubmit()} onPressIn={()=> {router.push('./resumo/')}}>
+                                <TouchableOpacity style={styles.btnAcessar} onPress={() => handleSubmit()} >
                                     <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }}>Acessar</Text>
                                 </TouchableOpacity>
                             </View>

@@ -27,12 +27,23 @@ class userController extends User {
 
     }
     function postDespesa($titulo, $valor, $categoria, $idUser){
-        $this->setTable('dispesas');
+        $this->setTable('despesas');
 
         $result = $this->insertDispesa($titulo, $valor, $categoria, $idUser);
 
         return $result;
 
     }
+
+    function getQtd($table) {
+
+        $this->setTable($table);
+
+        $response = $this->getQtdData();
+
+        return $response;
+
+    }
+
 
 }

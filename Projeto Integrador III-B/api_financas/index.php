@@ -12,7 +12,9 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 $routes = [
     'GET' => [
         '/despesas' => 'listarDespesas',
-        '/renda' => 'listarRendas'
+        '/despesas/qtd' => 'qtdDespesas',
+        '/renda' => 'listarRendas',
+        '/renda/qtd' => 'qtdRenda'
     ],
     'POST' => [
         '/despesas' => 'inserirDespesa',
@@ -40,7 +42,8 @@ function handleRoutes($routes, $requestMethod, $requestBody)
 
     } else {
         http_response_code(404);
-        echo "Página não encontrada";
+        
+        echo "Verifique a rota utilizada";
     }
 }
 
@@ -51,7 +54,7 @@ function listarDespesas()
     require_once('./controller/userController.php');
     $userController = new UserController();
     $result = $userController->listData('despesas');
-    echo json_encode($result);
+    die(json_encode($result));
 }
 
 function listarRendas()
@@ -59,7 +62,7 @@ function listarRendas()
     require_once('./controller/userController.php');
     $userController = new UserController();
     $result = $userController->listData('renda');
-    echo json_encode($result);
+    die(json_encode($result));
 }
 
 function inserirDespesa($requestBody)
@@ -72,7 +75,7 @@ function inserirDespesa($requestBody)
     $id = $data['idUser'];
     $userController = new userController();
     $codeResponse = $userController->postDespesa($titulo, $valor, $categoria, $id);
-    echo json_encode(["response_code" => $codeResponse]);
+    die(json_encode(["response_code" => $codeResponse]));
 }
 
 function inserirRenda($requestBody)
@@ -84,7 +87,7 @@ function inserirRenda($requestBody)
     $id = $data['idUser'];
     $userController = new UserController();
     $codeResponse = $userController->postRenda($titulo, $valor, $id);
-    echo json_encode(["response_code" => $codeResponse]);
+    die(json_encode(["response_code" => $codeResponse]));
 }
 
 function login()
@@ -96,7 +99,31 @@ function login()
     $senha = $dataJson['senha'];
     $loginController = new LoginController();
     $result = $loginController->authUser($email, $senha);
-    echo json_encode($result);
+    die(json_encode($result));
+}
+
+
+// PEGAR QUANTIDADES 
+
+function qtdDespesas() {
+
+    require_once('./controller/userController.php');
+    $userController = new UserController();
+
+    $response = $userController->getQtd('despesas');
+
+    die(json_encode($response));
+
+}
+
+function qtdRenda() {
+
+    require_once('./controller/userController.php');
+    $userController = new UserController();
+
+    $response = $userController->getQtd('renda');
+
+    die(json_encode($response));
 }
 
 // Manipular as rotas

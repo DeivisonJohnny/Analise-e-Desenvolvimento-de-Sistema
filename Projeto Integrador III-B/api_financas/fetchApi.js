@@ -1,33 +1,30 @@
-// let url = 'http://localhost:5201/postRenda'
+let url = 'http://localhost/despesas';  // URL do seu endpoint PHP
 
-// fetch(url).then(response => response.json())
-
-// .then(data => {
-//     console.log(data)
-// })
-
-
-
-const dispesas = {
-    titulo: 'Vendas',
-    valor: 134.4,
-}
-
-const uri = 'http://localhost:5201/auth'
-
-const renda = {
-    email: 'kleria@gmail.com',
-    senha: '12345678'
+// Dados da despesa a serem enviados
+let dadosDespesa = {
+    titulo: 'Compra de material',
+    valor: 150.50,
+    categoria: 'Material de Escritório',
+    idUser: 2
 };
 
-fetch(uri, {
+// Opções da requisição POST
+let options = {
     method: 'POST',
-    // headers: {
-    //     'Content-Type': 'application/json'
-    // },
-    body: JSON.stringify(renda)
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data)
-})
+    headers: {
+        'Content-Type': 'application/json',  // Indica que o corpo da requisição é JSON
+    },
+    body: JSON.stringify(dadosDespesa)  // Converte os dadosDespesa para JSON
+};
+
+// Faz a requisição usando fetch
+fetch(url, options)
+    .then(response => response.json())  // Converte a resposta para JSON
+    .then(data => {
+        console.log('Resposta do servidor:', data);
+        // Aqui você pode lidar com a resposta do servidor, se necessário
+    })
+    .catch(error => {
+        console.error('Erro ao enviar requisição:', error);
+        // Aqui você pode tratar erros de requisição
+    });

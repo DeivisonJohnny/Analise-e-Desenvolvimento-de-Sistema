@@ -55,8 +55,8 @@ class User extends Connection
     
     function insertDispesa($titulo, $valor, $categoria, $idUser)
     {
-        if ($this->table !== 'dispesas') {
-            return http_response_code(404);
+        if ($this->table !== 'despesas') {
+            return http_response_code(401);
         }
     
         $sql = "INSERT INTO $this->table (titulo, valor, categoria, idUser) values(:titulo, :valor, :categoria, :idUser)";
@@ -73,6 +73,27 @@ class User extends Connection
         }
     
         return http_response_code(200);
+    }
+
+    function getQtdData() {
+
+        $nameReturn = 'Despesas';
+        if($this->table !== 'despesas') {
+
+            $nameReturn = 'Renda';
+        }
+
+        $sql = "SELECT COUNT(*) as qtd$nameReturn from $this->table";
+
+        $query = $this->conn->prepare($sql);
+
+        $query->execute();
+
+        $response = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $response;
+
+
     }
 
 }

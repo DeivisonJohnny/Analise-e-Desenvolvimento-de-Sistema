@@ -3,14 +3,21 @@ import { Text, View, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 
 import { Formik } from 'formik';
 import * as Yup from 'yup'
 import * as Animatable from 'react-native-animatable'
+import { insertDespesas } from '../../../backend/User';
+import { router } from 'expo-router';
 
 
 interface dispesasProps { }
 
 const Dispesas = (props: dispesasProps) => {
 
-  function dispesasSubmit() {
+  async function dispesasSubmit({nome, valor, categoria}: any) {
 
+    const result = await insertDespesas(nome, valor, categoria)
+ 
+    if(result.response_code == 200) {
+      router.replace('../home/')
+    } 
   }
 
   return (
@@ -79,7 +86,7 @@ const Dispesas = (props: dispesasProps) => {
 
                 <View style={styles.boxInputs}>
 
-                  <TouchableOpacity style={styles.btnInsert}>
+                  <TouchableOpacity style={styles.btnInsert} onPress={()=> handleSubmit()}>
                     <Text style={{color: 'white', fontSize: 15, fontWeight: 'bold', letterSpacing: 1}}>Adicionar</Text>
                   </TouchableOpacity>
 
@@ -155,7 +162,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: '#ffffff2c'
+    borderColor: '#ffffff2c',
+    color: 'white'
   },
 
   btnInsert: {
