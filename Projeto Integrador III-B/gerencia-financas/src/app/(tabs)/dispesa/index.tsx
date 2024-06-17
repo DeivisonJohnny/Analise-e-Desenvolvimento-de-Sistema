@@ -87,7 +87,7 @@ const listRenda = (props: listRendaProps) => {
             <Text style={styles.title}>
                 Lista de dispesas
             </Text>
-                <ListElement list={listlistElement} categoria={false}></ListElement>
+                <ListElement list={listlistElement} categoria={true}></ListElement>
             </View>
         </View>
     );
