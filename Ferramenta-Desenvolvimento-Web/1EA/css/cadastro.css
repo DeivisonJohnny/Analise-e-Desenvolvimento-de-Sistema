@@ -4,6 +4,25 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+:root {
+    --borderInputs: 2px solid #0077ff;
+    --boxShadowInp: 0px 0px 10px -3px #00aeff;
+
+    --borderColorRequired: #e60000;
+    --shadowRequired: 0px 0px 10px -3px #ff0000;
+
+}
+
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgb(179, 216, 223);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #758ca7;
+    border-radius: 30px;
+}
 
 body {
     width: 100%;
@@ -19,14 +38,15 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 10px #00000044;
     border-radius: 20px;
-    min-width: 60%;
+    min-width: 70%;
     max-width: 80%;
     padding: 20px;
+    overflow-x: hidden;
 }
 
-main > section {
+main>section {
     padding: 40px 0px;
 }
 
@@ -39,19 +59,73 @@ form {
 }
 
 
-form > div {
+form>div {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
 }
 
-form > div > input {
+form>div>.labelRequired {
+    letter-spacing: 0.7px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 4px;
+}
+
+form>div>.labelRequired::before {
+
+    content: '*';
+    flex-wrap: nowrap;
+    color: red;
+    font-size: bold;
+
+}
+
+form>div>.inputs {
     padding: 10px;
     border-radius: 4px;
     outline: none;
-    border: 2px solid rgba(151, 255, 255, 0.747);
+    border: var(--borderInputs);
+    border-radius: 5px;
 }
+
+
+form>div>input:focus,
+textarea:focus {
+    transition: 0.4s;
+    box-shadow: var(--boxShadowInp);
+}
+
+form>div>.inpRequired, .inpRequired:focus {
+    border: 2px solid var(--borderColorRequired);
+    box-shadow: var(--shadowRequired);
+}
+
+textarea {
+    resize: vertical;
+    max-height: 270px;
+    outline: none;
+    border: var(--borderInputs);
+    border-radius: 5px;
+}
+
+.spans {
+    color: red;
+    font-size: 12px;
+    margin-left: 5px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    transform: translateX(-70%);
+    transition: 0.4s;
+
+}
+
+.spanRequired {
+    transform: translateX(0%);
+}
+
 
 #boxButton {
     display: flex;
@@ -61,9 +135,36 @@ form > div > input {
     gap: 20px;
 }
 
-#boxButton > button {
+#boxButton>button {
     padding: 10px 25px;
     font-size: 20px;
     border-radius: 5px;
     border: 1px solid gray;
+    cursor: pointer;
+
+}
+
+#boxButton>#btnSalvar {
+    background-color: #35ce8e;
+    color: white;
+    border: 1px solid #2cad77;
+    outline: none;
+}
+
+#boxButton>#btnLimpar {
+    background-color: #ff0000ea;
+    color: white;
+    border: 1px solid #ce0000;
+}
+
+
+@media screen and (max-width: 700px) {
+    main {
+        min-width: 90%;
+        box-shadow: none;
+    }
+
+    form {
+        width: 100%;
+    }
 }

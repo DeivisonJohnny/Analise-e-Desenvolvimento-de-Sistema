@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./css/cadastro.css">
+    <script src="./js/cadastro.js" defer></script>
 
     <title>Cadastro</title>
 </head>
@@ -16,28 +17,33 @@
 
         <form method="post">
             <div>
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" id="nome">
+                <label class="labelRequired" for="nome">Nome</label>
+                <input type="text" class="inputs" name="nome" id="nome">
+                <span class="spans">O campo deve ter ao menos 3 caracteres</span>
             </div>
             <div>
-                <label for="email">Email</label>
-                <input type="text" name="Email" id="Email">
+                <label class="labelRequired" for="email">Email</label>
+                <input type="text" class="inputs" name="Email" id="Email">
+                <span class="spans">Digite um email valido</span>
             </div>
             <div>
-                <label for="dataNac">Data de nascimento</label>
-                <input type="date" name="dataNac" id="dataNac">
+                <label class="labelRequired" for="dataNac">Data de nascimento</label>
+                <input type="date" class="inputs" name="dataNac" id="dataNac" maxlength="8" max="8">
+                <span class="spans">O campo deve ser preenchido corretamente</span>
             </div>
             <div>
-                <label for="residência">Residência</label>
-                <input type="text" name="residência" id="residência">
+                <label class="labelRequired" for="residência">Residência</label>
+                <input type="text" class="inputs" name="residência" id="residência">
+                <span class="spans">O campo deve ter ao menos 3 caracteres</span>
             </div>
             <div>
-                <label for="prefAlim">Preferência de Alimentação</label>
-                <textarea name="prefAlim" id="prefAlim" rows="10"></textarea>
+                <label class="labelRequired" for="prefAlim">Preferência de Alimentação</label>
+                <textarea class="inputs" name="prefAlim" id="prefAlim" rows="10"></textarea>
+                <span class="spans">O campo deve ter ao menos 5 caracteres</span>
             </div>
             <div id="boxButton">
-                <button>Salvar</button>
-                <button>Limpar</button>
+                <button id="btnSalvar" type="submit">Salvar</button>
+                <button id="btnLimpar" type="reset">Limpar</button>
             </div>
         </form>
 
