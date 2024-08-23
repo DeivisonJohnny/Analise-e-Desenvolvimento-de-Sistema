@@ -2,9 +2,9 @@
 require "./data/basedata.php";
 $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 
-$produtosFiltrados = array_filter($produtos, function($produto) use ($searchTerm) {
-    return stripos($produto['nome'], $searchTerm) !== false || 
-           stripos($produto['descricao'], $searchTerm) !== false;
+$produtosFiltrados = array_filter($produtos, function ($produto) use ($searchTerm) {
+    return stripos($produto['nome'], $searchTerm) !== false ||
+        stripos($produto['descricao'], $searchTerm) !== false;
 });
 ?>
 
@@ -55,7 +55,7 @@ $produtosFiltrados = array_filter($produtos, function($produto) use ($searchTerm
                         <tr>
                             <td><a href="./detalhe_produto.php?id=<?= $value['id'] ?>"><?= $value['nome'] ?></a></td>
                             <td><a href="./detalhe_produto.php?id=<?= $value['id'] ?>"><?= $value['descricao'] ?></a></td>
-                            <td><a href="./detalhe_produto.php?id=<?= $value['id'] ?>"><?= $value['preco'] ?></a></td>
+                            <td><a class="preco" href="./detalhe_produto.php?id=<?= $value['id'] ?>"><?= $value['preco'] ?></a></td>
                         </tr>
                     <?php endforeach ?>
                 <?php endif ?>
@@ -69,3 +69,5 @@ $produtosFiltrados = array_filter($produtos, function($produto) use ($searchTerm
 </body>
 
 </html>
+
+<script src="./js/main.js" defer></script>

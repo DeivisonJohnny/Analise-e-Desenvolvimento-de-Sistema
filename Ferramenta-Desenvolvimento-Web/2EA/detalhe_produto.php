@@ -37,7 +37,7 @@ $value = $objSearch->Search($produtos, $_GET['id']);
             </div>
             <div>
                 <label for="preco">Preço</label>
-                <input type="text" id="preco" value="<?= $value['preco'] ?>" readonly>
+                <input type="text" id="preco" class="preco" value="<?= $value['preco'] ?>" readonly>
             </div>
             <div>
                 <label for="descricao">Descrição</label>
@@ -53,3 +53,4 @@ $value = $objSearch->Search($produtos, $_GET['id']);
 </body>
 
 </html>
+<script src="./js/main.js" defer></script>
