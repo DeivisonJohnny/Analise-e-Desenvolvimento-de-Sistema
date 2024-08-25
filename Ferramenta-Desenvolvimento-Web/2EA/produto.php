@@ -21,6 +21,7 @@ $produtosFiltrados = array_filter($produtos, function ($produto) use ($searchTer
 </head>
 
 <body>
+
     <header>
         <h1>Dev Johnny</h1>
     </header>
