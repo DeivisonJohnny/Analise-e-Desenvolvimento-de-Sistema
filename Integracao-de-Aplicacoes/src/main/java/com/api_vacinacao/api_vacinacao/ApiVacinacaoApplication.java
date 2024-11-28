@@ -1,4 +1,4 @@
-package com.developerjohnny.api_vacinacao;
+package com.api_vacinacao.api_vacinacao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

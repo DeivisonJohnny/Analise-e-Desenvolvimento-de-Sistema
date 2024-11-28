@@ -1,4 +1,4 @@
-package com.developerjohnny.api_vacinacao;
+package com.api_vacinacao.api_vacinacao;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
